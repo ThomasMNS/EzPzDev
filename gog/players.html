@@ -93,11 +93,62 @@
             <div id="playersChart" style="height: 300px; margin-bottom: 10px;"></div>
             <div id="playersFilter" style="height: 75px;"></div>
         </div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            var data;
+            var request = new XMLHttpRequest();
+            request.open('GET', 'https://thomasmns.000webhostapp.com/read.php');
+            request.onload = function () {
+              data = JSON.parse(this.response);
+    
+              google.charts.load('current', {packages: ['corechart', 'controls']});
+              google.charts.setOnLoadCallback(drawDashboard);
+            };
+            request.send();
+    
+            function drawDashboard() {
+              var dataArray = [[{label: 'Time', type: 'datetime'}, {label: 'Players', type: 'number'}]];
+              for(var i in data) {
+                var t = data[i]["timeinserted"].split(/[- :]/);
+                dataArray.push([new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5])), parseInt(data[i]["numberplayers"])]);
+              };
+              var dataTable = google.visualization.arrayToDataTable(dataArray);
+    
+              var dashboard = new google.visualization.Dashboard(document.getElementById('playersDashboard'));
+    
+              var lineChart = new google.visualization.ChartWrapper({
+                'chartType': 'LineChart',
+                'containerId': 'playersChart', 
+                'options': {
+                  'legend': {'position': 'none'}
+                }
+              });
+    
+              var chartRangeFilter = new google.visualization.ControlWrapper({
+                'controlType': 'ChartRangeFilter',
+                'containerId': 'playersFilter',
+                'options': {
+                  'filterColumnLabel': 'Time',
+                  'ui': {
+                    'chartOptions': {
+                      'hAxis': {format: 'dd/MM/yy'},
+                    }
+                  }
+                },
+                'state': {'range': {'start': new Date(new Date().setDate(new Date().getDate()-7))}}
+              });
+    
+              dashboard.bind(chartRangeFilter, lineChart);
+    
+              dashboard.draw(dataTable);
+            };
+    
+          </script>
     </p>
     </div>
 <div id="link">
     <p id="link-header">Shameless plug</p>
-    <p id="link-description"><b><a href="http://bit.ly/ezpz-solace" target="_blank">Solace Crafting</a></b>: build and go any where you want with one caveat, the further you travel from the start the harder everything becomes, to no end. A fantasy sandbox, there is no 'do this to finish the game.' Explore, unlock recipes, seek out rare resources, build towns, level up, and own the wild. <b><a href="http://bit.ly/ezpz-solace" target="_blank">Read more...</a></b></p>
+    <p id="link-description"><b><a href="http://bit.ly/ezpz-staxel" target="_blank">Staxel</a></b>: A sandbox farming game that is currently in development. Tend to your farm and work on the village by yourself, or enlist the aid of your friends via online multiplayer to turn it into a thriving farmstead! <b><a href="http://bit.ly/ezpz-staxel" target="_blank">Read more...</a></b></p>
     <p id="link-footer">I earn a commission from all purchases, helping offset the costs of running this site and keeping me writing content. It supports charity too! Thank you.</p>
 </div>    <div id="comments">
             <p>Add your comments below!</p>
