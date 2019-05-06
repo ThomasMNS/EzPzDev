@@ -3,7 +3,7 @@ var request = new XMLHttpRequest();
 request.open('GET', 'https://thomasmns.000webhostapp.com/read1.php');
 request.onload = function () {
     if (request.status != 200) {
-        document.getElementById("pageContent").insertAdjacentHTML('afterbegin', '<p>Cannot read player count data. Please try again later.</p>');
+        document.getElementById("page-content").insertAdjacentHTML('afterbegin', '<p>Cannot read player count data. Please try again later.</p>');
     }
     else {
         data = JSON.parse(this.response);
@@ -14,7 +14,7 @@ request.onload = function () {
 };
 
 request.onerror = function() {
-    document.getElementById("pageContent").insertAdjacentHTML('afterbegin', '<p>Cannot read player count data. Please try again later.</p>');
+    document.getElementById("page-content").insertAdjacentHTML('afterbegin', '<p>Cannot read player count data. Please try again later.</p>');
 };
 
 request.send();
