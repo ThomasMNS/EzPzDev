@@ -12,6 +12,11 @@ request.onload = function () {
         google.charts.setOnLoadCallback(drawDashboard);
     }
 };
+
+request.onerror = function() {
+    document.getElementById("playersDashboard").insertAdjacentText('afterbegin', 'Cannot read player count data. Please try again later.');
+};
+
 request.send();
 
 function drawDashboard() {
