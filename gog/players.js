@@ -2,10 +2,15 @@ var data;
 var request = new XMLHttpRequest();
 request.open('GET', 'https://thomasmns.000webhostapp.com/read.php');
 request.onload = function () {
-    data = JSON.parse(this.response);
+    if (request.status != 200) {
+        document.getElementById("playersDashboard").insertAdjacentText('afterbegin', 'Cannot read player count data. Please try again later.');
+    }
+    else {
+        data = JSON.parse(this.response);
 
-    google.charts.load('current', {packages: ['corechart', 'controls']});
-    google.charts.setOnLoadCallback(drawDashboard);
+        google.charts.load('current', {packages: ['corechart', 'controls']});
+        google.charts.setOnLoadCallback(drawDashboard);
+    }
 };
 request.send();
 
