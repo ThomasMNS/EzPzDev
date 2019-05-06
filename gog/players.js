@@ -1,6 +1,6 @@
 var data;
 var request = new XMLHttpRequest();
-request.open('GET', 'https://thomasmns.000webhostapp.com/read.php');
+request.open('GET', 'https://thomasmns.000webhostapp.com/read1.php');
 request.onload = function () {
     if (request.status != 200) {
         document.getElementById("playersDashboard").insertAdjacentText('afterbegin', 'Cannot read player count data. Please try again later.');
