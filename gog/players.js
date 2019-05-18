@@ -1,6 +1,6 @@
 var data;
 var request = new XMLHttpRequest();
-request.open('GET', 'https://thomasmns.000webhostapp.com/read1.php');
+request.open('GET', 'https://api.ezpz.gg/playercount.php');
 request.onload = function () {
     if (request.status != 200) {
         document.getElementById("page-content").insertAdjacentHTML('afterbegin', '<p>Cannot read player count data. Please try again later.</p>');
