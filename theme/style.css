@@ -158,12 +158,9 @@ a:hover {
     padding: 0;
     margin: 0 auto;
     list-style: none;
+    justify-content: space-evenly;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-}
-
-#bottom-nav li {
-    margin: 0px 0px 0px 75px;
 }
 
 #hub-title a {
@@ -663,6 +660,56 @@ textarea {
 
 #site-footer a:hover {
     color: rgb(230, 233, 235);
+}
+
+/* GOG */ 
+
+/* Calculators */
+
+#player-details {
+    display: flex;
+    flex-direction: row;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+#player-details fieldset {
+    flex-basis: 50%;
+    border: none;
+    display: table;
+    margin: 0 auto;
+}
+
+#player-details fieldset p {
+    display: table-row;
+}
+
+#player-details label {
+    display: table-cell;
+    padding-right: 15px;
+    white-space: nowrap;
+}
+
+#player-details input {
+    display: table-cell;
+    width: 100%;
+    font-size: 18px;
+}
+
+#xp-required {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#calculator-links {
+    text-align: center;
+    font-size: 21px;
+}
+
+@media all and (max-width: 800px) {
+    #player-details {
+        flex-direction: column;
+    }
 }
 
 /* Mobile */
